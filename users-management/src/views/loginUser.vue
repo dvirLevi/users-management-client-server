@@ -27,7 +27,6 @@
 </template>
 
 <script>
-  // @ is an alias to /src
   import Swal from 'sweetalert2'
 
   export default {
