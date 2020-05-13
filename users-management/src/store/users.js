@@ -23,6 +23,17 @@ const users = {
                 }
             })
         },
+        connectIp(store, obj) {
+            return new Promise(async (resolve, reject) => {
+                try {
+                    let res = await postService.post(obj, `/connectIp`);
+                    // store.commit('pushuserIps', json);
+                    resolve(res)
+                } catch (err) {
+                    reject(err)
+                }
+            })
+        },
     },
 }
 

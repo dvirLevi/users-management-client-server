@@ -10,9 +10,6 @@
     <div class="col screen-height center-all">
       <div class="w-100 center-all">
         <div class="w-100 center-all">
-          <!-- <v-select class="vselect" v-model="data.listOfProtocols" dir="ltr" :searchable="false"
-            :options="['a', 'b', 'c']" placeholder="protocols">
-          </v-select> -->
           <div class="wrap-select">
            <selectOption :items="userIps" @mySelect="mySelect" themeColor="#cacaca" class="m-2" />
           </div>
@@ -42,7 +39,7 @@
     },
     data() {
       return {
-        data: {},
+        data: null,
         textButt: "connect"
       }
     },
@@ -51,20 +48,13 @@
         this.data = item
       },
       async sendData() {
-        if (this.data !== {}) {
+        if (this.data) {
           try {
             if (this.textButt === "connect") {
               this.textButt = "await...";
-              this.data.accountId = this.accountId;
-              console.log(this.data.accountId)
-              await this.$store.dispatch('addUser', this.data);
-              this.data = {
-                email: "",
-                password: "",
-                listOfIps: [],
-                listOfProtocols: "",
-                accountId: this.accountId
-              };
+              console.log(this.data)
+              await this.$store.dispatch('users/connectIp', this.data);
+              this.data = {};
               Swal.fire({
                 icon: 'success',
                 title: 'success',

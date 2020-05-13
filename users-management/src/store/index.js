@@ -43,18 +43,6 @@ export default new Vuex.Store({
         }
       })
     },
-    // loginUser(store, obj) {
-    //   return new Promise(async (resolve, reject) => {
-    //     try {
-    //       let res = await postService.post(obj, `/login-user`);
-    //       console.log(res)
-    //       store.commit('pushUserId', res);
-    //       resolve(res)
-    //     } catch (err) {
-    //       reject(err)
-    //     }
-    //   })
-    // },
     getAllUsers(store) {
       return new Promise(async (resolve, reject) => {
         try {
