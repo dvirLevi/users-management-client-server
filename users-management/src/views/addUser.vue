@@ -16,12 +16,12 @@
             :options="['a', 'b', 'c']" placeholder="protocols">
           </v-select>
         </div>
-        <div class="w-100 center-all">
+        <!-- <div class="w-100 center-all">
           <input type="password" placeholder="Password" v-model="data.password" required>
         </div>
         <div class="w-100 center-all">
           <input type="password" placeholder="Password validation" v-model="validationPassword" required>
-        </div>
+        </div> -->
         <div class="w-100 center-all">
           <input type="email" placeholder="Email addres" v-model="data.email" required>
         </div>
@@ -51,12 +51,12 @@
       return {
         data: {
           email: "",
-          password: "",
+          // password: "",
           listOfIps: [],
           listOfProtocols: "",
           accountId: ""
         },
-        validationPassword: "",
+        // validationPassword: "",
         ip: "",
         textButt: "send"
       }
@@ -70,7 +70,7 @@
       },
       async sendData() {
         
-        if (this.data.password === this.validationPassword && this.data.listOfIps.length) {
+        // if (this.data.password === this.validationPassword && this.data.listOfIps.length) {
           try {
             if (this.textButt === "send") {
               this.textButt = "await...";
@@ -102,14 +102,14 @@
             });
             this.textButt = "send";
           }
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Passwords not corresponding or you forget to add ips',
-            timer: 1500
-          });
-        }
+        // } else {
+        //   Swal.fire({
+        //     icon: 'error',
+        //     title: 'Oops...',
+        //     text: 'Passwords not corresponding or you forget to add ips',
+        //     timer: 1500
+        //   });
+        // }
       },
     },
     computed: {
