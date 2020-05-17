@@ -1,27 +1,33 @@
 <template>
   <div class="row">
     <div class="col">
-      <form class="w-100 center-all" @submit.prevent="sendData">
+      <form class="w-100 center-all" @submit.prevent="addIp">
         <div class="w-100 center-all">
-          <input type="text" placeholder="Add ip" v-model="ip">
-          <div class="w-100 center-all">
-            <p v-for="item in data.listOfIps" class="p-1" :key="item">{{item}}</p>
-          </div>
-          <div class="w-100 center-all">
-            <div class="btn btn-success" @click="addIp">Add ip</div>
-          </div>
+          <input type="text" placeholder="Add ip" v-model="objIp.ip" required>
         </div>
         <div class="w-100 center-all">
-           <v-select class="vselect" v-model="data.listOfProtocols" dir="ltr" :searchable="false"
-            :options="['a', 'b', 'c']" placeholder="protocols">
+          <v-select class="vselect" v-model="objIp.protocol" dir="ltr" :searchable="false" :options="['a', 'b', 'c']"
+            placeholder="protocols" required>
           </v-select>
         </div>
-        <!-- <div class="w-100 center-all">
-          <input type="password" placeholder="Password" v-model="data.password" required>
+        <div class="w-100 center-all">
+          <input type="password" placeholder="Password" v-model="objIp.password" required>
         </div>
         <div class="w-100 center-all">
+          <button class="btn btn-success" type="submit">Add ip</button>
+        </div>
+        <div class="w-100 center-top ">
+          <div v-for="item in data.listOfIps" class="w-25 p-1 center-top" :key="item.ip">
+            <p class="w-100 text-left">ip: {{item.ip}}</p>
+            <p class="w-100 text-left">protocol: {{item.protocol}}</p>
+            <p class="w-100 text-left">password: {{item.password}}</p>
+          </div>
+        </div>
+        <!-- <div class="w-100 center-all">
           <input type="password" placeholder="Password validation" v-model="validationPassword" required>
         </div> -->
+      </form>
+        <form @submit.prevent="sendData">
         <div class="w-100 center-all">
           <input type="email" placeholder="Email addres" v-model="data.email" required>
         </div>
@@ -51,26 +57,38 @@
       return {
         data: {
           email: "",
-          // password: "",
           listOfIps: [],
-          listOfProtocols: "",
           accountId: ""
         },
-        // validationPassword: "",
-        ip: "",
+        objIp: {
+          ip: "",
+          password: "",
+          protocol: ""
+        },
+        // ip: "",
         textButt: "send"
       }
     },
     methods: {
       addIp() {
-        if(this.ip) {
-          this.data.listOfIps.push(this.ip);
-          this.ip = ""
+        if (this.objIp.protocol) {
+          this.data.listOfIps.push(this.objIp);
+          this.objIp = {
+            ip: "",
+            password: "",
+            protocol: ""
+          }
+        }else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'add protocol',
+            timer: 1500
+          });
         }
       },
       async sendData() {
-        
-        // if (this.data.password === this.validationPassword && this.data.listOfIps.length) {
+        if (this.data.listOfIps.length) {
           try {
             if (this.textButt === "send") {
               this.textButt = "await...";
@@ -102,14 +120,14 @@
             });
             this.textButt = "send";
           }
-        // } else {
-        //   Swal.fire({
-        //     icon: 'error',
-        //     title: 'Oops...',
-        //     text: 'Passwords not corresponding or you forget to add ips',
-        //     timer: 1500
-        //   });
-        // }
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'add ips',
+            timer: 1500
+          });
+        }
       },
     },
     computed: {

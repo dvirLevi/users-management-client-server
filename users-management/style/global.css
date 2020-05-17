@@ -19,7 +19,7 @@ body {
 
 .center-top {
   display: flex;
-  /* align-items: inherit; */
+  align-items: flex-start;
   justify-content: center;
   flex-wrap: wrap;
 }
