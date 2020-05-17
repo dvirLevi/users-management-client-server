@@ -34,7 +34,7 @@ export default new Vuex.Store({
       return new Promise(async (resolve, reject) => {
         try {
           let res = await postService.post(obj, `/account/${store.state.userId}/user`);
-          store.commit('pushUserId', res);
+          // store.commit('pushUserId', res);
           resolve(res)
         } catch (err) {
           reject(err)
