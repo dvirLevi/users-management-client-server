@@ -9,8 +9,6 @@ export default new Vuex.Store({
   state: {
     userId: "",
     allUsers: []
-  
-  
   },
   mutations: {
     pushUserId(state, el) {
@@ -25,7 +23,7 @@ export default new Vuex.Store({
       return new Promise(async (resolve, reject) => {
         try {
           let res = await postService.post(obj, "/createNewAdmin");
-          store.commit('pushUserId', res);
+          store.commit('pushUserId', res.accountId);
           resolve(res)
         } catch (err) {
           reject(err)
