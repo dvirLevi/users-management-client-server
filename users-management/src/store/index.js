@@ -23,7 +23,7 @@ export default new Vuex.Store({
       return new Promise(async (resolve, reject) => {
         try {
           let res = await postService.post(obj, "/createNewAdmin");
-          store.commit('pushUserId', res.accountId);
+          store.commit('pushUserId', res.companyId);
           resolve(res)
         } catch (err) {
           reject(err)
