@@ -14,7 +14,7 @@ const users = {
         loginUser(store, obj) {
             return new Promise(async (resolve, reject) => {
                 try {
-                    let res = await postService.post(obj, `/login-user`);
+                    let res = await postService.post(obj, `/loginUser`);
                     let json = JSON.parse(res)
                     store.commit('pushuserIps', json);
                     resolve(res)
