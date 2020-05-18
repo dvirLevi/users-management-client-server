@@ -20,7 +20,7 @@ const routes = [{
   },
   {
     path: '/managementUsers',
-    name: 'managementUsers',
+    // name: 'managementUsers',
     component: () => import('../views/managementUsers.vue'),
     beforeEnter: (to, from, next) => {
       if (!store.state.userId) {
@@ -35,6 +35,7 @@ const routes = [{
       },
       {
         path: '/',
+        name: 'managementUsers',
         component: () => import('../views/showUsers.vue'),
       },
       
@@ -53,7 +54,7 @@ const routes = [{
   },
   {
     path: '/userIps',
-    name: 'connectIp',
+    // name: 'connectIp',
     component: () => import( '../views/userIps.vue'),
     beforeEnter: (to, from, next) => {
       console.log(store.state.users.userIps)
@@ -66,6 +67,7 @@ const routes = [{
     children: [
     {
       path: '/',
+      name: 'connectIp',
       component: () => import('../views/connectIp.vue'),
     },
   ]
