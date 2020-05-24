@@ -63,7 +63,7 @@
                   timer: 1500
                 });
                 this.textButt = "connect";
-                window.location.href = "replace with your url";
+                window.location.href = "http://localhost:8082/asid_war/index.html";
               } else {
                 Swal.fire({
                   icon: 'error',
