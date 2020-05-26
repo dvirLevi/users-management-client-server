@@ -40,7 +40,23 @@
           password: "",
           email: ""
         },
-        textButt: "send"
+        textButt: "send",
+        listOfIps: [{
+            ip: "asd.asd.asd",
+            password: "asdasd!asd#asd",
+            protocol: "asd1"
+        },
+        {
+            ip: "asd1.asd1.asd1",
+            password: "asdasd!asd#asd",
+            protocol: "asd2"
+        },
+        {
+            ip: "asd2.asd2.asd2",
+            password: "asdasd!asd#asd",
+            protocol: "asd3"
+        }
+    ],
       }
     },
     methods: {
@@ -48,19 +64,22 @@
         try {
           if (this.textButt === "send") {
             this.textButt = "await...";
-            await this.$store.dispatch('users/loginUser', this.data);
-            this.data = {
-              password: "",
-              email: ""
-            };
-            Swal.fire({
-              icon: 'success',
-              title: 'success',
-              text: 'The login was successful!',
-              timer: 1500
-            });
-            this.textButt = "send";
-            this.$router.push('/userIps/');
+            let res = await this.$store.dispatch('users/loginUser', this.data);
+            // this.data = {
+            //   password: "",
+            //   email: ""
+            // };
+            // Swal.fire({
+            //   icon: 'success',
+            //   title: 'success',
+            //   text: 'The login was successful!',
+            //   timer: 1500
+            // });
+            // this.textButt = "send";
+            // this.$router.push('/userIps/');
+            var strJSON = encodeURIComponent(JSON.stringify(res));
+            window.location.replace("http://localhost:8082/asid_war/connect.html?ips=" + strJSON);
+
           }
         } catch (err) {
           Swal.fire({
